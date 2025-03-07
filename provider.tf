@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "google" {
-  credentials ="/home/runner/work/terraform-gcp/terraform-gcp/*.json" # "D:\\Study\\practice\\terraform\\gcp\\terraform-key.json"
+  credentials = file("/home/runner/work/terraform-gcp/terraform-gcp/*.json") # "D:\\Study\\practice\\terraform\\gcp\\terraform-key.json"
   project = "formal-office-452901-e9"
   zone = "asia-southeast1-a"
 }
