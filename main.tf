@@ -1,11 +1,14 @@
+resource "google_compute_instance" "gcp_example" {
+  machine_type = var.instance_type
+  name         = "gcp-test"
 
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
 
-provider "aws" {
-  region = "us-east-1" # Set the AWS region to US East (N. Virginia)
-}
-
-resource "aws_instance" "aws_example" {
-  tags = {
-    Name = "ExampleInstance" # Tag the instance with a Name tag for easier identification
+  network_interface {
+    network = "default"
   }
 }
