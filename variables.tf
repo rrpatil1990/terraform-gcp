@@ -3,7 +3,3 @@ variable "instance_type" {
   default = "e2-micro"                 # Default value for the variable
   description = "The type of VM instance" # Description of what this variable represents
 }
-
-variable "gcp_cred" {
-  type = object({})
-}
