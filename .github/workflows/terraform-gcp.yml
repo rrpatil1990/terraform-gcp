@@ -20,7 +20,7 @@ jobs:
 
       # Step 3: Authenticate with GCP using the service account
       - name: Authenticate to GCP
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
@@ -32,6 +32,8 @@ jobs:
       # Step 5: Initialize Terraform
       - name: Terraform Init
         run: terraform init
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
 
       # Step 6: Terraform Plan
       - name: Terraform Plan
