@@ -36,11 +36,11 @@ jobs:
 
       # Step 6: Terraform Plan
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -out=tfplan -var="gcp_cred=${{ secrets.GCP_CREDENTIALS }}"
 
       # Step 7: Terraform Apply
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve tfplan
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+        run: terraform apply -auto-approve tfplan -var="gcp_cred=${{ secrets.GCP_CREDENTIALS }}"
+#        env:
+#          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
