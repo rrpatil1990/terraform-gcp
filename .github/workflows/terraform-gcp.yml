@@ -24,9 +24,11 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      # Step 4: Set up Google Cloud CLI
-      - name: Set up gcloud CLI
-        uses: google-github-actions/setup-gcloud@v1
+      # Step 4: Set the GOOGLE_APPLICATION_CREDENTIALS environment variable dynamically
+      - name: Set GOOGLE_APPLICATION_CREDENTIALS environment variable
+        run: echo "${{ secrets.GCP_CREDENTIALS }}" > ${{ github.workspace }}/gcp-credentials.json
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/gcp-credentials.json
 
       # Step 5: Initialize Terraform
       - name: Terraform Init
